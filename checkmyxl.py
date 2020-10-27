@@ -19,10 +19,13 @@ class ColumnChecker(object):
                     function(column, cell)
 
 
-def main():
+def main(selection=None):
     book = Book.caller()
     sheet = book.sheets.active
-    selection = sheet.used_range
+    if selection:
+        selection = sheet[selection]
+    else:
+        selection = sheet.used_range
     cc = ColumnChecker(sheet, selection)
     cc.check()
 
