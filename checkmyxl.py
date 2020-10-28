@@ -10,13 +10,14 @@ class ColumnChecker(object):
 
     def check(self):
         for column in self.selection.columns:
+            col_num = column.column-1
+            if col_num not in TASKS:
+                continue
             for row in self.selection.rows:
-                col_num = column.column-1
                 row_num = row.row-1
                 cell = self.sheet[(row_num, col_num)]
-                if col_num in TASKS:
-                    function = TASKS[col_num]
-                    function(row, column, cell)
+                function = TASKS[col_num]
+                function(row, column, cell)
 
 
 def main(selection=None, header=True):
