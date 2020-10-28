@@ -8,7 +8,7 @@ def contains_digit(row, column, cell):
     highlight(cell, logic_test)
 
 
-def has_no_duplicates(row, column, cell):
+def is_unique(row, column, cell):
     duplicates = [item for item, count
                   in Counter(column.value).items() if count > 1]
     logic_test = cell.value not in duplicates
