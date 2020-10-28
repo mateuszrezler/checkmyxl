@@ -19,15 +19,24 @@ class ColumnChecker(object):
                     function(row, column, cell)
 
 
-def main(selection=None):
+def main(selection=None, header=True):
     book = Book.caller()
     sheet = book.sheets.active
     if selection:
+        header = False
         selection = sheet[selection]
     else:
         selection = sheet.used_range
+    if header:
+        selection = skip_header(sheet, selection)
     cc = ColumnChecker(sheet, selection)
     cc.check()
+
+
+def skip_header(sheet, selection):
+    return sheet.range(
+        (selection.row+1, selection.column),
+        (selection.last_cell.row, selection.last_cell.column))
 
 
 if __name__ == '__main__':
