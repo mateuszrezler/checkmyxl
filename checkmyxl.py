@@ -16,7 +16,7 @@ class ColumnChecker(object):
                 cell = self.sheet[(row_num, col_num)]
                 if col_num in TASKS:
                     function = TASKS[col_num]
-                    function(column, cell)
+                    function(row, column, cell)
 
 
 def main(selection=None):
