@@ -17,4 +17,5 @@ def is_unique(row, column, cell):
 
 def is_greatest_in_row(row, column, cell):
     logic_test = cell.value == max(row.value)
-    highlight(cell, logic_test)
+    cell.value = max(row.value)
+    highlight(cell, logic_test, autocorrect=True)
