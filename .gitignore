@@ -1,3 +1,5 @@
 # Microsoft Excel files
 *.xlsm
 
+# Python cache
+__pycache__
