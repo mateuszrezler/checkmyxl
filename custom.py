@@ -24,3 +24,12 @@ def is_unique(row, column, cell):
                   in Counter(column.value).items() if count > 1]
     logic_test = cell.value not in duplicates
     highlight(cell, logic_test)
+
+
+def show_groups(row, column, cell):
+    colors = [(128, 128, 128), None]
+    logic_test = cell.value == cell.offset(-1, 0).value
+    if cell.offset(-1, 0).color == colors[0]:
+        cell.color = colors[not logic_test]
+    else:
+        cell.color = colors[logic_test]
