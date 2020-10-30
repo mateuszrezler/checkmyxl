@@ -16,8 +16,12 @@ class ColumnChecker(object):
             for row in self.selection.rows:
                 row_num = row.row-1
                 cell = self.sheet[(row_num, col_num)]
-                function = TASKS[col_num]
-                function(row, column, cell)
+                function = TASKS[col_num][0]
+                if len(TASKS[col_num]) == 1:
+                    function(row, column, cell)
+                else:
+                    args = TASKS[col_num][1:]
+                    function(row, column, cell, *args)
 
 
 def main(selection=None, header=True):

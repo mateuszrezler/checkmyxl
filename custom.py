@@ -26,6 +26,11 @@ def is_unique(row, column, cell):
     highlight(cell, logic_test)
 
 
+def matches_regex(row, column, cell, regex):
+    logic_test = search(regex, str(cell.value))
+    highlight(cell, logic_test)
+
+
 def show_groups(row, column, cell):
     colors = [(128, 128, 128), None]
     logic_test = cell.value == cell.offset(-1, 0).value
