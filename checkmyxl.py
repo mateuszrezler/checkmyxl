@@ -16,10 +16,11 @@ class ColumnChecker(object):
             for row in self.selection.rows:
                 row_num = row.row-1
                 cell = self.sheet[(row_num, col_num)]
-                function = TASKS[col_num][0]
-                if len(TASKS[col_num]) == 1:
+                if callable(TASKS[col_num]):
+                    function = TASKS[col_num]
                     function(row, column, cell)
-                else:
+                elif isinstance(TASKS[col_num], tuple):
+                    function = TASKS[col_num][0]
                     args = TASKS[col_num][1:]
                     function(row, column, cell, *args)
 
