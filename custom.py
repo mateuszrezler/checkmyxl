@@ -32,10 +32,7 @@ def matches_regex(row, column, cell, regex):
 
 
 def show_groups(row, column, cell):
-    colors = [(128, 128, 128), None]
+    group = 0
     logic_test = cell.value == cell.offset(-1, 0).value
-    if cell.offset(-1, 0).color == colors[0]:
-        cell.color = colors[not logic_test]
-    else:
-        cell.color = colors[logic_test]
+    group = highlight(cell, logic_test, groups=True, group=group)
 
