@@ -38,3 +38,4 @@ def show_groups(row, column, cell):
         cell.color = colors[not logic_test]
     else:
         cell.color = colors[logic_test]
+

@@ -6,3 +6,4 @@ def highlight(cell, logic_test, autocorrect=False):
             cell.color = (255, 255, 0)
         else:
             cell.color = (255, 0, 0)
+

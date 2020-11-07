@@ -48,3 +48,4 @@ def skip_header(sheet, selection):
 if __name__ == '__main__':
     Book('checkmyxl.xlsm').set_mock_caller()
     main()
+
