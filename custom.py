@@ -14,8 +14,9 @@ def is_bool(row, column, cell):
 
 
 def is_greatest_in_row(row, column, cell):
-    logic_test = cell.value == max(row.value)
-    cell.value = max(row.value)
+    values = [0 if isinstance(x, str) else x for x in row.value]
+    logic_test = cell.value == max(values)
+    cell.value = max(values)
     highlight(cell, logic_test, autocorrect=True)
 
 
