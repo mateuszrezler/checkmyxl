@@ -14,7 +14,7 @@ def is_instance(row, column, cell, instance):
 
 
 def is_greatest_in_row(row, column, cell):
-    values = [0 if isinstance(x, str) else x for x in row.value]
+    values = [x if type(x) in (int, float) else 0 for x in row.value]
     logic_test = cell.value == max(values)
     cell.value = max(values)
     highlight(cell, logic_test, autocorrect=True)
