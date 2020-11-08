@@ -6,11 +6,6 @@ from re import search
 group = 0
 
 
-def contains_digit(row, column, cell):
-    logic_test = search(r'\d', str(cell.value))
-    highlight(cell, logic_test)
-
-
 def is_instance(row, column, cell, instance):
     logic_test = isinstance(cell.value, instance)
     highlight(cell, logic_test)
