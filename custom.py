@@ -8,8 +8,8 @@ def contains_digit(row, column, cell):
     highlight(cell, logic_test)
 
 
-def is_bool(row, column, cell):
-    logic_test = isinstance(cell.value, bool)
+def is_instance(row, column, cell, instance):
+    logic_test = isinstance(cell.value, instance)
     highlight(cell, logic_test)
 
 
