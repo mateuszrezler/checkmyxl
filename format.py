@@ -20,5 +20,5 @@ def highlight(cell,
             cell.color = incorrect_color
         if groups:
             cell.color = group_colors[0**group]
-            return group
+            return 0**group
 

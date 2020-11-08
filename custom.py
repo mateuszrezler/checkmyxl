@@ -3,6 +3,9 @@ from format import highlight
 from re import search
 
 
+group = 0
+
+
 def contains_digit(row, column, cell):
     logic_test = search(r'\d', str(cell.value))
     highlight(cell, logic_test)
@@ -33,7 +36,7 @@ def matches_regex(row, column, cell, regex):
 
 
 def show_groups(row, column, cell):
-    group = 0
+    global group
     logic_test = cell.value == cell.offset(-1, 0).value
     group = highlight(cell, logic_test, groups=True, group=group)
 
