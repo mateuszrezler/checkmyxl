@@ -1,5 +1,6 @@
-from custom import contains_digit, is_instance, is_greatest_in_row, \
-    is_unique, matches_regex, show_groups
+from custom import is_instance, is_greatest_in_row, is_unique, matches_regex, \
+    show_groups
+
 
 TASKS = {
     0: (is_instance, bool),
