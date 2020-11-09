@@ -1,3 +1,5 @@
+from pandas import read_csv
+from sys import argv
 from tasks import TASKS
 from xlwings import Book
 
@@ -26,8 +28,7 @@ class ColumnChecker(object):
 
 
 def main(selection=None, header=True):
-    book = Book.caller()
-    sheet = book.sheets.active
+    sheet = load_sheet()
     if selection:
         header = False
         selection = sheet[selection]
@@ -39,13 +40,29 @@ def main(selection=None, header=True):
     cc.check()
 
 
+def make_sample():
+    sheet = load_sheet()
+    sample = read_csv('sample.csv')
+    sheet['A1'].value = list(sample.columns)
+    sheet['A2'].value = sample.values
+    sheet.autofit('columns')
+
+
 def skip_header(sheet, selection):
     return sheet.range(
         (selection.row+1, selection.column),
         (selection.last_cell.row, selection.last_cell.column))
 
 
+def load_sheet():
+    book = Book.caller()
+    sheet = book.sheets.active
+    return sheet
+
+
 if __name__ == '__main__':
     Book('checkmyxl.xlsm').set_mock_caller()
-    main()
-
+    if len(argv) == 2 and argv[1] == 'make_sample':
+        make_sample()
+    else:
+        main()

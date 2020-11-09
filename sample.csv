@@ -1,0 +1,13 @@
+Is bool?,Is greatest in row?,Is unique?,Has 3 consecutive digits?,Show groups,Not checked
+TRUE,0,1,A1,Sentence number 1.,0
+TRUE,10,1,A2,Sentence number 1.,1
+TRUE,20,2,A3,Sentence number 1.,2
+True,30,3,A4,Sentence number 2.,3
+False,40,4,A5,Sentence number 2.,4
+123,50,5,A6,Sentence number 3.,5
+,,6,A7,Sentence number 3.,6
+,,7,A8,Sentence number 4.,7
+FALSE,0,8,A9,Sentence number 4.,8
+FALSE,0,9,A100,Sentence number 4.,9
+FALSE,100,10,A200,Sentence number 4.,10
+
