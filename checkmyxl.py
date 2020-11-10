@@ -42,9 +42,8 @@ def main(selection=None, header=True):
 
 def make_sample():
     sheet = load_sheet()
-    sample = read_csv('sample.csv')
-    sheet['A1'].value = list(sample.columns)
-    sheet['A2'].value = sample.values
+    sample = read_csv('sample.csv', header=None)
+    sheet['A1'].value = sample.values
     sheet.autofit('columns')
 
 
