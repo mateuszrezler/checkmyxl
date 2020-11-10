@@ -30,7 +30,7 @@ xlwings addin install
 # Create empty project
 xlwings quickstart checkmyxl
 
-# Move `chechmyxl.xlsm` file to main directory
+# Move `checkmyxl.xlsm` file to main directory
 # macOS
 mv checkmyxl/checkmyxl.xlsm checkmyxl.xlsm
 # Windows
