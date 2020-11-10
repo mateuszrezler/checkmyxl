@@ -10,6 +10,9 @@ See [Conda documentation](https://docs.conda.io) for more details.
 # Clone this repository
 git clone https://github.com/mateuszrezler/checkmyxl.git
 
+# Go to `checkmyxl` directory
+cd chechmyxl
+
 # Create `checkmyxl` environment with dependencies
 # macOS
 conda create --channel conda-forge --name checkmyxl --yes \
