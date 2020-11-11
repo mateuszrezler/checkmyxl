@@ -25,8 +25,8 @@ def is_unique(row, column, cell):
     highlight(cell, logic_test)
 
 
-def matches_regex(row, column, cell, regex):
-    logic_test = search(regex, str(cell.value))
+def matches_regex(row, column, cell, regex, col_offset=0):
+    logic_test = search(regex, str(cell.offset(0, col_offset).value))
     highlight(cell, logic_test)
 
 
