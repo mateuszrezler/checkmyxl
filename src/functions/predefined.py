@@ -6,8 +6,8 @@ from re import search
 group = 0
 
 
-def is_instance(row, column, cell, instance):
-    logic_test = isinstance(cell.value, instance)
+def is_instance(row, column, cell, instance, col_offset=0):
+    logic_test = isinstance(cell.offset(0, col_offset).value, instance)
     highlight(cell, logic_test)
 
 
