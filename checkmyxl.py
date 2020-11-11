@@ -1,6 +1,6 @@
 from pandas import read_csv
 from sys import argv
-from tasks import TASKS
+from src.tasks import TASKS
 from xlwings import Book
 
 
@@ -42,7 +42,7 @@ def main(selection=None, header=True):
 
 def make_sample():
     sheet = load_sheet()
-    sample = read_csv('sample.csv', header=None)
+    sample = read_csv('data/sample.csv', header=None)
     sheet['A1'].value = sample.values
     sheet.autofit('columns')
 
@@ -65,3 +65,4 @@ if __name__ == '__main__':
         make_sample()
     else:
         main()
+

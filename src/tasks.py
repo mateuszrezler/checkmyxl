@@ -1,5 +1,5 @@
-from custom import is_instance, is_greatest_in_row, is_unique, matches_regex, \
-    show_groups
+from .functions.predefined import is_instance, is_greatest_in_row, is_unique, \
+    matches_regex, show_groups
 
 
 TASKS = {

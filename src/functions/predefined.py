@@ -1,5 +1,5 @@
+from .format import highlight
 from collections import Counter
-from format import highlight
 from re import search
 
 

@@ -1,7 +1,7 @@
 # checkmyxl
 Automate validation of your data in Microsoft Excel sheet.  
 Built on top of [xlwings]([https://www.xlwings.org).
-![Demo gif](checkmyxl.gif)
+![Demo gif](img/checkmyxl.gif)
 
 ## Installation
 ### With Conda package manager
@@ -45,7 +45,7 @@ deltree checkmyxl
 
 ## Test run
 ```
-# Add sample data from `sample.csv` file to `checkmyxl.xlsm` file
+# Add sample data from `data/sample.csv` file to `checkmyxl.xlsm` file
 python checkmyxl.py make_sample
 
 # Start `main` function from `checkmyxl.py` file
