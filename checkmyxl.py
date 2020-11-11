@@ -27,7 +27,7 @@ class ColumnChecker(object):
                     function(row, column, cell, *args)
 
 
-def main(selection=None, header=True):
+def main(selection=None, header=True, reset_colors=True):
     sheet = load_sheet()
     if selection:
         header = False
@@ -36,6 +36,8 @@ def main(selection=None, header=True):
         selection = sheet.used_range
     if header:
         selection = skip_header(sheet, selection)
+    if reset_colors:
+        selection.color = None
     cc = ColumnChecker(sheet, selection)
     cc.check()
 
