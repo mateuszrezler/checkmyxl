@@ -6,8 +6,15 @@ from re import search
 group = 0
 
 
-def is_in(row, column, cell, iterable, col_offset=0):
-    logic_test = cell.offset(0, col_offset).value in iterable
+def is_in(row, column, cell, iterable, sep=None, col_offset=0):
+    if sep:
+        logic_test = True
+        for element in cell.offset(0, col_offset).value.split(sep):
+            if element not in iterable:
+                logic_test = False
+                break
+    else:
+        logic_test = cell.offset(0, col_offset).value in iterable
     highlight(cell, logic_test)
 
 
