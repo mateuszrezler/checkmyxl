@@ -6,6 +6,11 @@ from re import search
 group = 0
 
 
+def is_in(row, column, cell, iterable, col_offset=0):
+    logic_test = cell.offset(0, col_offset).value in iterable
+    highlight(cell, logic_test)
+
+
 def is_instance(row, column, cell, instance, col_offset=0):
     logic_test = isinstance(cell.offset(0, col_offset).value, instance)
     highlight(cell, logic_test)
