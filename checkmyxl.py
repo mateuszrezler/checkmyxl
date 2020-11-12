@@ -66,7 +66,7 @@ def main(selection=None):
 
 
 def make_sample():
-    sheet = load_sheet()
+    sheet = _load_sheet()
     sample = read_csv('data/sample.csv', header=None)
     sheet['A1'].value = sample.values
     sheet.autofit('columns')
