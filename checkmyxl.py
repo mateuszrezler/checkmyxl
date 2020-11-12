@@ -1,3 +1,5 @@
+from json import load as load_json
+from os.path import dirname, join as join_path, realpath
 from pandas import read_csv
 from sys import argv
 from src.tasks import TASKS
@@ -27,16 +29,37 @@ class ColumnChecker(object):
                     function(row, column, cell, *args)
 
 
-def main(selection=None, header=True, reset_colors=True):
-    sheet = load_sheet()
+def _load_config():
+    dir = dirname(realpath(__file__))
+    json_path = join_path(dir, 'config.json')
+    with open(json_path) as cf:
+        config = load_json(cf)
+    return config
+
+
+def _load_sheet():
+    book = Book.caller()
+    sheet = book.sheets.active
+    return sheet
+
+
+def _skip_header(sheet, selection):
+    return sheet.range(
+        (selection.row+1, selection.column),
+        (selection.last_cell.row, selection.last_cell.column))
+
+
+def main(selection=None):
+    config = _load_config()
+    sheet = _load_sheet()
     if selection:
         header = False
         selection = sheet[selection]
     else:
         selection = sheet.used_range
-    if header:
-        selection = skip_header(sheet, selection)
-    if reset_colors:
+    if config['header']:
+        selection = _skip_header(sheet, selection)
+    if config['reset_colors']:
         selection.color = None
     cc = ColumnChecker(sheet, selection)
     cc.check()
@@ -47,18 +70,6 @@ def make_sample():
     sample = read_csv('data/sample.csv', header=None)
     sheet['A1'].value = sample.values
     sheet.autofit('columns')
-
-
-def skip_header(sheet, selection):
-    return sheet.range(
-        (selection.row+1, selection.column),
-        (selection.last_cell.row, selection.last_cell.column))
-
-
-def load_sheet():
-    book = Book.caller()
-    sheet = book.sheets.active
-    return sheet
 
 
 if __name__ == '__main__':
