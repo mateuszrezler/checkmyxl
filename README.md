@@ -15,11 +15,9 @@ cd chechmyxl
 
 # Create `checkmyxl` environment with dependencies
 # macOS
-conda create --channel conda-forge --name checkmyxl --yes \
-    appscript pandas psutil rdkit xlwings
+conda create -c conda-forge -n checkmyxl appscript pandas psutil xlwings
 # Windows
-conda create --channel conda-forge --name checkmyxl --yes \
-    comtypes pandas pywin32 rdkit xlwings
+conda create -c conda-forge -n checkmyxl comtypes pandas pywin32 xlwings
 
 # Activate new environment
 conda activate checkmyxl
