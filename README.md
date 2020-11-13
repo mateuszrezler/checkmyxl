@@ -11,7 +11,7 @@ See [Conda documentation](https://docs.conda.io) for more details.
 git clone https://github.com/mateuszrezler/checkmyxl.git
 
 # Go to `checkmyxl` directory
-cd chechmyxl
+cd checkmyxl
 
 # Create `checkmyxl` environment with dependencies
 # macOS
