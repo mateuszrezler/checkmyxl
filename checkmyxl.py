@@ -38,6 +38,7 @@ def _load_config():
 
 
 def _load_sheet():
+    Book('checkmyxl.xlsm').set_mock_caller()
     book = Book.caller()
     sheet = book.sheets.active
     return sheet
@@ -73,7 +74,6 @@ def make_sample():
 
 
 if __name__ == '__main__':
-    Book('checkmyxl.xlsm').set_mock_caller()
     if len(argv) == 2 and argv[1] == 'make_sample':
         make_sample()
     else:
