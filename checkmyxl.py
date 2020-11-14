@@ -1,7 +1,8 @@
-from sys import argv
 from src.tasks import TASKS
 from src.utils import get_abs_path, load_config, load_sample, load_sheet, \
     skip_header
+from sys import argv
+from xlwings import App, apps, Book
 
 
 class ColumnChecker(object):
@@ -50,9 +51,17 @@ def make_sample():
     sheet.autofit('columns')
 
 
-if __name__ == '__main__':
+def start():
+    config = load_config()
+    excel_path = get_abs_path(config['excel_file'])
+    if apps.count == 0:
+        App()
+    Book(excel_path).set_mock_caller()
     if len(argv) == 2 and argv[1] == 'make_sample':
         make_sample()
-    else:
-        main()
+    main()
+
+
+if __name__ == '__main__':
+    start()
 

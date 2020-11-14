@@ -24,9 +24,6 @@ def load_sample():
 
 
 def load_sheet():
-    config = load_config()
-    excel_path = get_abs_path(config['excel_file'])
-    Book(excel_path).set_mock_caller()
     book = Book.caller()
     sheet = book.sheets.active
     return book, sheet
