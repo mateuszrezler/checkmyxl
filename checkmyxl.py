@@ -30,7 +30,7 @@ class ColumnChecker(object):
 
 
 def _load_config():
-    config_path = _get_abs_path(join_path('config.json'))
+    config_path = _get_abs_path('config.json')
     with open(config_path) as cf:
         config = load_json(cf)
     return config
@@ -38,13 +38,14 @@ def _load_config():
 
 def _load_sample():
     config = _load_config()
-    sample_path = _get_abs_path(join_path(config['sample_file']))
+    sample_path = _get_abs_path(config['sample_file'])
     sample = read_csv(sample_path, header=None).values
     return sample
 
 
-def _load_sheet(excel_file):
-    excel_path = _get_abs_path(excel_file)
+def _load_sheet():
+    config = _load_config()
+    excel_path = _get_abs_path(config['excel_file'])
     Book(excel_path).set_mock_caller()
     book = Book.caller()
     sheet = book.sheets.active
@@ -64,7 +65,7 @@ def _skip_header(sheet, selection):
 
 def main(selection=None):
     config = _load_config()
-    book, sheet = _load_sheet(config['excel_file'])
+    book, sheet = _load_sheet()
     if selection:
         header = False
         selection = sheet[selection]
@@ -79,8 +80,7 @@ def main(selection=None):
 
 
 def make_sample():
-    config = _load_config()
-    book, sheet = _load_sheet(config['excel_file'])
+    book, sheet = _load_sheet()
     sheet['A1'].value = _load_sample()
     sheet.autofit('columns')
 
