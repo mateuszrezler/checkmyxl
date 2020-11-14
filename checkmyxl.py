@@ -18,12 +18,13 @@ class ColumnChecker(object):
             for row in self.selection.rows:
                 row_num = row.row-1
                 cell = self.sheet[(row_num, col_num)]
-                if callable(TASKS[col_num]):
-                    function = TASKS[col_num]
+                task = TASKS[col_num]
+                if callable(task):
+                    function = task
                     function(row, column, cell)
-                elif isinstance(TASKS[col_num], tuple):
-                    function = TASKS[col_num][0]
-                    args = TASKS[col_num][1:]
+                elif isinstance(task, tuple):
+                    function = task[0]
+                    args = task[1:]
                     function(row, column, cell, *args)
 
 
@@ -35,8 +36,8 @@ def main(selection=None):
         selection = sheet[selection]
     else:
         selection = sheet.used_range
-    if config['header']:
-        selection = skip_header(sheet, selection)
+        if config['header']:
+            selection = skip_header(sheet, selection)
     if config['reset_colors']:
         selection.color = None
     cc = ColumnChecker(sheet, selection)
