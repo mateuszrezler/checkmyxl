@@ -1,4 +1,6 @@
 {
+    "excel_file": "checkmyxl.xlsm",
     "header": true,
-    "reset_colors": true
+    "reset_colors": true,
+    "sample_file": "data/sample.csv"
 }
