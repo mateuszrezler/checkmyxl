@@ -41,7 +41,7 @@ def _load_sheet():
     Book('checkmyxl.xlsm').set_mock_caller()
     book = Book.caller()
     sheet = book.sheets.active
-    return sheet
+    return book, sheet
 
 
 def _skip_header(sheet, selection):
@@ -52,7 +52,7 @@ def _skip_header(sheet, selection):
 
 def main(selection=None):
     config = _load_config()
-    sheet = _load_sheet()
+    book, sheet = _load_sheet()
     if selection:
         header = False
         selection = sheet[selection]
@@ -67,7 +67,7 @@ def main(selection=None):
 
 
 def make_sample():
-    sheet = _load_sheet()
+    book, sheet = _load_sheet()
     sample = read_csv('data/sample.csv', header=None)
     sheet['A1'].value = sample.values
     sheet.autofit('columns')
