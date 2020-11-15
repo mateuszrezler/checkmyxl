@@ -25,8 +25,8 @@ class ColumnChecker(object):
                     function(row, column, cell)
                 elif isinstance(task, tuple):
                     function = task[0]
-                    args = task[1:]
-                    function(row, column, cell, *args)
+                    kwargs = task[1]
+                    function(row, column, cell, **kwargs)
 
 
 def main(selection=None):
