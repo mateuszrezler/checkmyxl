@@ -5,7 +5,8 @@ from re import search
 
 def are_in(row, column, cell, iterable, sep=';', col_offset=0):
     elements = str(cell.offset(0, col_offset).value).split(sep)
-    logic_test = [element for element in elements if element in iterable]
+    not_found = [element for element in elements if element not in iterable]
+    logic_test = not not_found
     check(cell, logic_test)
 
 
