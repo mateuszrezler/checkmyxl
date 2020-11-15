@@ -4,19 +4,22 @@ from re import search
 
 
 def are_in(row, column, cell, iterable, sep=';', col_offset=0):
-    elements = str(cell.offset(0, col_offset).value).split(sep)
+    eval_cell = cell.offset(0, col_offset)
+    elements = str(eval_cell.value).split(sep)
     not_found = [element for element in elements if element not in iterable]
     logic_test = not not_found
     check(cell, logic_test)
 
 
 def is_in(row, column, cell, iterable, col_offset=0):
-    logic_test = cell.offset(0, col_offset).value in iterable
+    eval_cell = cell.offset(0, col_offset)
+    logic_test = eval_cell.value in iterable
     check(cell, logic_test)
 
 
 def is_instance(row, column, cell, instance, col_offset=0):
-    logic_test = isinstance(cell.offset(0, col_offset).value, instance)
+    eval_cell = cell.offset(0, col_offset)
+    logic_test = isinstance(eval_cell.value, instance)
     check(cell, logic_test)
 
 
@@ -35,7 +38,8 @@ def is_unique(row, column, cell):
 
 
 def matches_regex(row, column, cell, regex, col_offset=0):
-    logic_test = search(regex, str(cell.offset(0, col_offset).value))
+    eval_cell = cell.offset(0, col_offset)
+    logic_test = search(regex, str(eval_cell.value))
     check(cell, logic_test)
 
 
