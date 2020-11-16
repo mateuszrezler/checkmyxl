@@ -1,12 +1,8 @@
 group_switch = True
 
 
-def check(cell,
-          logic_test,
-          autocorrect=False,
-          correct_color=(0, 255, 0),
-          incorrect_color=(255, 0, 0),
-          corrected_color=(255, 255, 0)):
+def check(cell, logic_test, autocorrect=False, correct_color=(0, 255, 0),
+          incorrect_color=(255, 0, 0), corrected_color=(255, 255, 0)):
     if logic_test:
         cell.color = correct_color
     else:
