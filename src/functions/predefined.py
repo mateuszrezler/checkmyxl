@@ -28,9 +28,8 @@ def is_instance(row, column, cell, instance, col_offset=0):
 
 def is_greatest_in_row(row, column, cell):
     values = [x if type(x) in (int, float) else 0 for x in row.value]
-    cell.value = max(values)
     logic_test = cell.value == max(values)
-    check(cell, logic_test, autocorrect=True)
+    check(cell, logic_test, autocorrect=max(values))
 
 
 def is_unique(row, column, cell):

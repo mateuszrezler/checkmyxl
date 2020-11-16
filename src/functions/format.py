@@ -8,6 +8,7 @@ def check(cell, logic_test, autocorrect=False, correct_color=(0, 255, 0),
     else:
         if autocorrect:
             cell.color = corrected_color
+            cell.value = autocorrect
         else:
             cell.color = incorrect_color
 
