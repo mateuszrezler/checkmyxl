@@ -67,6 +67,14 @@ def start():
     main()
 
 
+def undo():
+    config = load_config()
+    book, sheet = load_sheet()
+    book.close()
+    excel_path = get_abs_path(config['excel_file'])
+    Book(excel_path)
+
+
 if __name__ == '__main__':
     start()
 
