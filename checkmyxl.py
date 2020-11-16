@@ -27,6 +27,11 @@ class ColumnChecker(object):
                     function = task[0]
                     kwargs = task[1]
                     function(row, column, cell, **kwargs)
+                else:
+                    error_msg = 'Task should be a function or a two-element' \
+                        + ' tuple containing in turn: a function and' \
+                        + ' a dictionary of its keyword arguments.'
+                    raise TypeError(error_msg)
 
 
 def main(selection=None):
