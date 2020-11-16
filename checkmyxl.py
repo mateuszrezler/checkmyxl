@@ -22,16 +22,16 @@ class ColumnChecker(object):
                 task = TASKS[col_num]
                 if callable(task):
                     function = task
-                    function(row, column, cell)
+                    kwargs = {}
                 elif isinstance(task, tuple):
                     function = task[0]
                     kwargs = task[1]
-                    function(row, column, cell, **kwargs)
                 else:
                     error_msg = 'Task should be a function or a two-element' \
                         + ' tuple containing in turn: a function and' \
                         + ' a dictionary of its keyword arguments.'
                     raise TypeError(error_msg)
+                function(row, column, cell, **kwargs)
 
 
 def main(selection=None):
