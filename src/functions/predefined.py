@@ -1,6 +1,6 @@
 from .format import check, group
 from collections import Counter
-from re import search
+from re import search, sub
 
 
 def are_in(row, column, cell, iterable, sep=';', show_not_found=False,
@@ -46,6 +46,14 @@ def matches_regex(row, column, cell, regex, col_offset=0):
 
 
 def show_groups(row, column, cell):
+    group(cell)
+
+
+def sub_and_group(row, column, cell, regex, replacement):
+    if cell.value is None:
+        cell.value = ''
+    else:
+        cell.value = sub(regex, replacement, str(cell.value))
     group(cell)
 
 
