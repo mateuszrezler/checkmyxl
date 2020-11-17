@@ -39,6 +39,18 @@ def is_unique(row, column, cell):
     check(cell, logic_test)
 
 
+def make_link(row, column, cell, col_offset=0):
+    evaluated_cell = cell.offset(0, col_offset)
+    logic_test = evaluated_cell.value is not None
+    if logic_test:
+        prefix = ''
+        if not search(r'^https?://', evaluated_cell.value):
+            prefix = 'https://'
+        link = prefix + evaluated_cell.value
+        cell.add_hyperlink(link, evaluated_cell.value)
+    check(cell, logic_test, correct_color=None)
+
+
 def matches_regex(row, column, cell, regex, col_offset=0):
     evaluated_cell = cell.offset(0, col_offset)
     logic_test = search(regex, str(evaluated_cell.value))
