@@ -3,8 +3,7 @@ from collections import Counter
 from re import search, sub
 
 
-def are_in(row, column, cell, iterable, sep=';', show_not_found=False,
-           col_offset=0):
+def are_in(cell, iterable, sep=';', show_not_found=False, col_offset=0):
     evaluated_cell = cell.offset(0, col_offset)
     elements = str(evaluated_cell.value).split(sep)
     not_found = [element for element in elements if element not in iterable]
@@ -14,32 +13,32 @@ def are_in(row, column, cell, iterable, sep=';', show_not_found=False,
     check(cell, logic_test)
 
 
-def is_in(row, column, cell, iterable, col_offset=0):
+def is_in(cell, iterable, col_offset=0):
     evaluated_cell = cell.offset(0, col_offset)
     logic_test = evaluated_cell.value in iterable
     check(cell, logic_test)
 
 
-def is_instance(row, column, cell, instance, col_offset=0):
+def is_instance(cell, instance, col_offset=0):
     evaluated_cell = cell.offset(0, col_offset)
     logic_test = isinstance(evaluated_cell.value, instance)
     check(cell, logic_test)
 
 
-def is_greatest_in_row(row, column, cell):
-    values = [x if type(x) in (int, float) else 0 for x in row.value]
+def is_greatest_in_row(cell):
+    values = [x if type(x) in (int, float) else 0 for x in cell.r.value]
     logic_test = cell.value == max(values)
     check(cell, logic_test, autocorrect=max(values))
 
 
-def is_unique(row, column, cell):
+def is_unique(cell):
     duplicates = [item for item, count
-                  in Counter(column.value).items() if count > 1]
+                  in Counter(cell.c.value).items() if count > 1]
     logic_test = cell.value not in duplicates
     check(cell, logic_test)
 
 
-def make_link(row, column, cell, col_offset=0):
+def make_link(cell, col_offset=0):
     evaluated_cell = cell.offset(0, col_offset)
     logic_test = evaluated_cell.value is not None
     if logic_test:
@@ -51,17 +50,17 @@ def make_link(row, column, cell, col_offset=0):
     check(cell, logic_test, correct_color=None)
 
 
-def matches_regex(row, column, cell, regex, col_offset=0):
+def matches_regex(cell, regex, col_offset=0):
     evaluated_cell = cell.offset(0, col_offset)
     logic_test = search(regex, str(evaluated_cell.value))
     check(cell, logic_test)
 
 
-def show_groups(row, column, cell):
+def show_groups(cell):
     group(cell)
 
 
-def sub_and_group(row, column, cell, regex, replacement):
+def sub_and_group(cell, regex, replacement):
     if cell.value is None:
         cell.value = ''
     else:
@@ -69,8 +68,7 @@ def sub_and_group(row, column, cell, regex, replacement):
     group(cell)
 
 
-def translate(row, column, cell, dictionary, sep=';', show_not_found=False,
-              col_offset=0):
+def translate(cell, dictionary, sep=';', show_not_found=False, col_offset=0):
     evaluated_cell = cell.offset(0, col_offset)
     elements = str(evaluated_cell.value).split(sep)
     translated = [dictionary[element] for element in elements

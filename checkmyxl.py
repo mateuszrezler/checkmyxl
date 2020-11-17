@@ -19,6 +19,7 @@ class ColumnChecker(object):
             for row in self.selection.rows:
                 row_num = row.row-1
                 cell = self.sheet[(row_num, col_num)]
+                cell.c, cell.r = column, row
                 task = TASKS[col_num]
                 if callable(task):
                     function = task
@@ -31,7 +32,7 @@ class ColumnChecker(object):
                         + ' tuple containing in turn: a function and' \
                         + ' a dictionary of its keyword arguments.'
                     raise TypeError(error_msg)
-                function(row, column, cell, **kwargs)
+                function(cell, **kwargs)
 
 
 def main(selection=None):
