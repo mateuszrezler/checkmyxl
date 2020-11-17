@@ -1,3 +1,14 @@
+"""
+Tasks for checkmyxl package.
+
+This module provides: `TASKS` dictionary for `ColumnChecker` object.
+
+Constants
+---------
+TASKS    dictionary containing functions from `predefined` or `custom` module
+         and their parameters if needed.
+
+"""
 from .functions.predefined import is_instance, is_greatest_in_row, is_unique, \
     matches_regex, show_groups
 
