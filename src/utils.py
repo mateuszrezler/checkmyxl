@@ -12,6 +12,7 @@ load_sheet      return active book and sheet.
 skip_header     reduce the selection by the first row.
 
 """
+from argparse import ArgumentParser
 from json import load as load_json
 from os.path import dirname, join as join_path, realpath
 from pandas import read_csv
@@ -85,6 +86,12 @@ def load_sheet():
     return book, sheet
 
 
+def parse_args(args):
+    ap = ArgumentParser()
+    ap.add_argument('-ms', '--make-sample', action='store_true')
+    return ap.parse_args(args)
+
+
 def skip_header(sheet, selection):
     """
     Reduce the selection by the first row.
@@ -106,3 +113,4 @@ def skip_header(sheet, selection):
         (selection.last_cell.row, selection.last_cell.column)
     reduced_selection = sheet.range(*coordinates)
     return reduced_selection
+

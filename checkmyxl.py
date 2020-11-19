@@ -1,7 +1,6 @@
-from argparse import ArgumentParser
 from src.tasks import TASKS
 from src.utils import get_abs_path, load_config, load_sample, load_sheet, \
-    skip_header
+    parse_args, skip_header
 from sys import argv
 from xlwings import App, apps, Book
 
@@ -56,12 +55,6 @@ def make_sample():
     book, sheet = load_sheet()
     sheet['A1'].value = load_sample()
     sheet.autofit('columns')
-
-
-def parse_args(args):
-    ap = ArgumentParser()
-    ap.add_argument('-ms', '--make-sample', action='store_true')
-    return ap.parse_args(args)
 
 
 def start(args=None):
