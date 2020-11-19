@@ -1,3 +1,4 @@
+from argparse import ArgumentParser
 from src.tasks import TASKS
 from src.utils import get_abs_path, load_config, load_sample, load_sheet, \
     skip_header
@@ -57,13 +58,21 @@ def make_sample():
     sheet.autofit('columns')
 
 
-def start():
+def parse_args(args):
+    ap = ArgumentParser()
+    ap.add_argument('-ms', '--make-sample', action='store_true')
+    return ap.parse_args(args)
+
+
+def start(args=None):
+    if not args:
+        args = parse_args(argv[1:])
     config = load_config()
     excel_path = get_abs_path(config['excel_file'])
     if apps.count == 0:
         App()
     Book(excel_path).set_mock_caller()
-    if len(argv) == 2 and argv[1] == 'make_sample':
+    if args.make_sample:
         make_sample()
     main()
 
