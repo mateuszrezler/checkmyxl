@@ -1,7 +1,8 @@
 """
 Utility functions for checkmyxl package.
 
-This module provides: routines for loading files and managing sheets.
+This module provides: routines for loading files, managing sheets and parsing
+command-line options.
 
 Functions
 ---------
@@ -9,6 +10,7 @@ get_abs_path    return absolute path of a given relative path.
 load_config     read `config.json` file and return configuration dictionary.
 load_sample     read sample `csv` file and return its contents as data frame.
 load_sheet      return active book and sheet.
+parse_args      parse command-line options.
 skip_header     reduce the selection by the first row.
 
 """
@@ -87,6 +89,20 @@ def load_sheet():
 
 
 def parse_args(args):
+    """
+    Parse command-line options.
+
+    Parameters
+    ----------
+    args : list
+        A list of command-line options.
+
+    Returns
+    -------
+    ap : argparse.ArgumentParser
+        `ArgumentParser` object with parsed arguments as attributes.
+
+    """
     ap = ArgumentParser()
     ap.add_argument('-ms', '--make-sample', action='store_true')
     return ap.parse_args(args)
