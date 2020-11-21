@@ -51,7 +51,7 @@ def load_config():
         A dictionary with initial settings.
 
     """
-    config_path = get_abs_path('config.json')
+    config_path = get_abs_path('config/config.json')
     with open(config_path) as cf:
         config = load_json(cf)
     return config
