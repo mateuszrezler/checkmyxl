@@ -1,4 +1,4 @@
-from .core import ColumnChecker, make_sample, undo
+from .core import ColumnChecker, main, make_sample, start, undo
 
 
 __name__ = 'checkmyxl'
