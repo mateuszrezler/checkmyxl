@@ -1,6 +1,6 @@
-from .tasks import TASKS
 from .utils import get_abs_path, load_config, load_sheet, load_sample, \
     parse_args, skip_header
+from config.tasks import TASKS
 from xlwings import App, apps, Book
 
 
