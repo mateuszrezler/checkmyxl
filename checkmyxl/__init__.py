@@ -1,5 +1,4 @@
 from .core import ColumnChecker, make_sample, undo
-from . import utils
 
 
 __name__ = 'checkmyxl'
