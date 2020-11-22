@@ -1,91 +1,61 @@
 """
 Utility functions for checkmyxl package.
 
-This module provides: routines for loading files, managing sheets and parsing
-command-line options.
+This module provides: routines for loading configuration, managing sheets
+and parsing command-line options.
 
 Functions
 ---------
-get_abs_path    return absolute path of a given relative path.
-load_config     read `config.json` file and return configuration dictionary.
-load_sample     read sample `csv` file and return its contents as data frame.
-load_sheet      return active book and sheet.
+load_config     load initial configuration.
+load_sheet      return active sheet and book if needed.
 parse_args      parse command-line options.
 skip_header     reduce the selection by the first row.
 
 """
 from argparse import ArgumentParser
-from json import load as load_json
-from os.path import dirname, join as join_path, realpath
+from os.path import join as join_path
 from pandas import read_csv
-from xlwings import Book
+from sys import path as sys_path
+from xlwings import App, apps, Book
 
 
-def get_abs_path(rel_path):
+def load_config(excel_dir):
+    config_path = join_path(excel_dir, 'config')
+    sys_path.append(config_path)
+    from config.settings import EXCEL_FILE, HEADER, RESET_COLORS, SAMPLE_FILE
+    excel_path = join_path(excel_dir, EXCEL_FILE)
+    sample_path = join_path(excel_dir, *SAMPLE_FILE.split('/'))
+    return excel_path, HEADER, RESET_COLORS, sample_path
+
+
+def load_sheet(book_also=False):
     """
-    Return absolute path of a given relative path.
+    Return active book and sheet.
 
     Parameters
     ----------
-    rel_path : str
-        Path relative to `checkmyxl.py` file.
-
-    Returns
-    -------
-    abs_path : str
-        Absolute path.
-
-    """
-    parent_dir = dirname(realpath(__file__))
-    abs_path = join_path(parent_dir, '..', *rel_path.split('/'))
-    return abs_path
-
-
-def load_config():
-    """
-    Read `config.json` file and return configuration dictionary.
-
-    Returns
-    -------
-    config : dict
-        A dictionary with initial settings.
-
-    """
-    config_path = get_abs_path('config/config.json')
-    with open(config_path) as cf:
-        config = load_json(cf)
-    return config
-
-
-def load_sample():
-    """
-    Read sample `csv` file and return its contents as data frame.
-
-    Returns
-    -------
-    sample : pandas.core.frame.DataFrame
-        Sample data frame.
-
-    """
-    config = load_config()
-    sample_path = get_abs_path(config['sample_file'])
-    sample = read_csv(sample_path, header=None).values
-    return sample
-
-
-def load_sheet():
-    """
-    Return active book and sheet.
+    book_also : bool, optional
+        When `True`, a tuple of book and sheet is returned.
+        When `False`, sheet is returned only.
 
     Returns
     -------
     book, sheet : tuple
         A tuple of active book and sheet.
+    sheet : xlwings.main.Sheet
+        Active sheet.
 
     """
     book = Book.caller()
     sheet = book.sheets.active
-    return book, sheet
+    return (book, sheet) if book_also else sheet
+
+
+def make_sample(sample_path):
+    sheet = load_sheet()
+    sample = read_csv(sample_path, header=None).values
+    sheet['A1'].value = sample
+    sheet.autofit('columns')
 
 
 def parse_args(args):
@@ -106,6 +76,16 @@ def parse_args(args):
     ap = ArgumentParser()
     ap.add_argument('-ms', '--make-sample', action='store_true')
     return ap.parse_args(args)
+
+
+def run_from_script(argv, excel_path, sample_path, excel_dir):
+    if apps.count == 0:
+        App()
+    Book(excel_path).set_mock_caller()
+    if len(argv) > 1:
+        args = parse_args(argv[1:])
+        if args.make_sample:
+            make_sample(sample_path)
 
 
 def skip_header(sheet, selection):
