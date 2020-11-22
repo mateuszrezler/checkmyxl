@@ -8,3 +8,11 @@ Sub CheckSelection()
     RunPython "from " & mymodule & " import main; main(selection='" & SelectedRange & "')"
 End Sub
 
+Sub Undo()
+    Dim wb As Workbook
+    Dim mymodule As String
+    Set wb = ActiveWorkbook
+    mymodule = Left(wb.Name, (InStrRev(wb.Name, ".", -1, vbTextCompare) - 1))
+    RunPython "from " & mymodule & " import undo; undo()"
+End Sub
+
