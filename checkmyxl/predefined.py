@@ -72,13 +72,10 @@ def sub_and_group(cell, regex, replacement):
 def translate(cell, dictionary, sep=';', show_not_found=False, col_offset=0):
     evaluated_cell = cell.offset(0, col_offset)
     elements = str(evaluated_cell.value).split(sep)
-    translated = [dictionary[element] for element in elements
-                  if element in dictionary]
+    translated = [str(dictionary[element]) if element in dictionary
+                  else '<not_found>' for element in elements]
     not_found = [element for element in elements if element not in dictionary]
-    if not_found and show_not_found:
-        cell.value = f'{sep.join(not_found)}|{sep.join(translated)}'
-    else:
-        cell.value = str(sep.join(translated))
+    cell.value = sep.join(translated)
     logic_test = not not_found
     check(cell, logic_test)
 
