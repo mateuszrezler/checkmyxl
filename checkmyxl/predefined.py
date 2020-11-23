@@ -25,10 +25,11 @@ def is_instance(cell, instance, col_offset=0):
     check(cell, logic_test)
 
 
-def is_greatest_in_row(cell):
+def is_greatest_in_row(cell, autocorrect=False, col_offset=0):
+    evaluated_cell = cell.offset(0, col_offset)
     values = [x if type(x) in (int, float) else 0 for x in cell.r.value]
-    logic_test = cell.value == max(values)
-    check(cell, logic_test, autocorrect=max(values))
+    logic_test = evaluated_cell.value == max(values)
+    check(cell, logic_test, autocorrect=max(values)*autocorrect)
 
 
 def is_unique(cell):
