@@ -3,12 +3,13 @@ from collections import Counter
 from re import search, sub
 
 
-def are_in(cell, iterable, sep=';', show_not_found=False, col_offset=0):
+def are_in(cell, iterable, sep=';', show_not_found=False,
+           not_found_prefix='Not found: ', col_offset=0):
     evaluated_cell = cell.offset(0, col_offset)
     elements = str(evaluated_cell.value).split(sep)
     not_found = [element for element in elements if element not in iterable]
     if not_found and show_not_found:
-        cell.value = f'{sep.join(not_found)}|{evaluated_cell.value}'
+        cell.value = not_found_prefix + sep.join(not_found)
     logic_test = not not_found
     check(cell, logic_test)
 
