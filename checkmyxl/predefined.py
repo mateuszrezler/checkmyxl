@@ -69,7 +69,7 @@ def sub_and_group(cell, regex, replacement):
     group(cell)
 
 
-def translate(cell, dictionary, sep=';', show_not_found=False, col_offset=0):
+def translate(cell, dictionary, sep=';', col_offset=0):
     evaluated_cell = cell.offset(0, col_offset)
     elements = str(evaluated_cell.value).split(sep)
     translated = [str(dictionary[element]) if element in dictionary
