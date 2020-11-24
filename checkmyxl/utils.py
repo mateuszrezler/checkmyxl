@@ -26,7 +26,7 @@ def load_config(excel_dir):
     Load initial configuration.
       1. Add `config` directory to `sys.path`.
       2. Import configuration constants from `settings` module.
-      3. Join paths for `EXCEL_FILE` and `SAMPLE_FILE`
+      3. Join paths for `EXCEL_FILE` and `SAMPLE_FILE`.
 
     Parameters
     ----------
