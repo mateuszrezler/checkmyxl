@@ -114,7 +114,7 @@ def parse_args(args):
     return ap.parse_args(args)
 
 
-def run_from_script(argv, excel_path, sample_path, excel_dir):
+def run_from_script(argv, excel_path, sample_path):
     """
     Routine for command-line startup.
 
@@ -126,8 +126,6 @@ def run_from_script(argv, excel_path, sample_path, excel_dir):
         Absolute path to Excel file.
     sample_path : str
         Absolute path of sample `csv` file.
-    excel_dir : str
-        Absolute path to the directory containing Excel file.
 
     """
     if apps.count == 0:

@@ -7,7 +7,7 @@ from xlwings import Book
 
 def main(argv=[], selection=None):
     if argv:
-        run_from_script(argv, excel_path, sample_path, excel_dir)
+        run_from_script(argv, excel_path, sample_path)
     sheet = load_sheet()
     cc = ColumnChecker(sheet, selection, header, reset_colors)
     cc.check()
