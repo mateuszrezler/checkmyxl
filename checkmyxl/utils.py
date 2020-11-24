@@ -75,7 +75,7 @@ def load_sheet(book_also=False):
     return (book, sheet) if book_also else sheet
 
 
-def make_sample(sample_path):
+def make_sample(sample_path, autofit=True):
     """
     Add the content of the sample file to the active sheet.
 
@@ -83,12 +83,15 @@ def make_sample(sample_path):
     ----------
     sample_path : str
         Absolute path of sample `csv` file.
+    autofit : bool, optional
+        When `True`, the column width is adjusted automatically.
 
     """
     sheet = load_sheet()
     sample = read_csv(sample_path, header=None).values
     sheet['A1'].value = sample
-    sheet.autofit('columns')
+    if autofit:
+        sheet.autofit('columns')
 
 
 def parse_args(args):
