@@ -6,10 +6,12 @@ and parsing command-line options.
 
 Functions
 ---------
-load_config     load initial configuration.
-load_sheet      return active sheet and book if needed.
-parse_args      parse command-line options.
-skip_header     reduce the selection by the first row.
+load_config        load initial configuration.
+load_sheet         return active book and sheet.
+make_sample        add the content of the sample file to the active sheet.
+parse_args         parse command-line options.
+run_from_script    routine for command-line startup.
+skip_header        reduce the selection by the first row.
 
 """
 from argparse import ArgumentParser
@@ -20,6 +22,28 @@ from xlwings import App, apps, Book
 
 
 def load_config(excel_dir):
+    """
+    Load initial configuration.
+      1. Add `config` directory to `sys.path`.
+      2. Import configuration constants from `settings` module.
+      3. Join paths for `EXCEL_FILE` and `SAMPLE_FILE`
+
+    Parameters
+    ----------
+    excel_dir : str
+        Absolute path to the directory containing Excel file.
+
+    Returns
+    -------
+    excel_path : str
+        Absolute path to Excel file.
+    HEADER : bool
+        When `True`, the first row is skipped by `ColumnChecker`.
+    RESET_COLORS : bool
+        When `True`, checking area background color is removed.
+    sample_path : str
+        Absolute path of sample `csv` file.
+    """
     config_path = join_path(excel_dir, 'config')
     sys_path.append(config_path)
     from config.settings import EXCEL_FILE, HEADER, RESET_COLORS, SAMPLE_FILE
@@ -52,6 +76,15 @@ def load_sheet(book_also=False):
 
 
 def make_sample(sample_path):
+    """
+    Add the content of the sample file to the active sheet.
+
+    Parameters
+    ----------
+    sample_path : str
+        Absolute path of sample `csv` file.
+
+    """
     sheet = load_sheet()
     sample = read_csv(sample_path, header=None).values
     sheet['A1'].value = sample
@@ -79,6 +112,21 @@ def parse_args(args):
 
 
 def run_from_script(argv, excel_path, sample_path, excel_dir):
+    """
+    Routine for command-line startup.
+
+    Parameters
+    ----------
+    argv : list
+        A list of command-line arguments passed to the program.
+    excel_path : str
+        Absolute path to Excel file.
+    sample_path : str
+        Absolute path of sample `csv` file.
+    excel_dir : str
+        Absolute path to the directory containing Excel file.
+
+    """
     if apps.count == 0:
         App()
     Book(excel_path).set_mock_caller()
