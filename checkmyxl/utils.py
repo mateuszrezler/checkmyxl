@@ -1,8 +1,8 @@
 """
 Utility functions for checkmyxl package.
 
-This module provides: routines for loading configuration, managing sheets
-and parsing command-line options.
+This module provides: routines for initial configuration, managing sheets
+and handling command-line interface.
 
 Functions
 ---------
