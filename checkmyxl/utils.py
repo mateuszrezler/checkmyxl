@@ -7,7 +7,7 @@ and parsing command-line options.
 Functions
 ---------
 load_config        load initial configuration.
-load_sheet         return active book and sheet.
+load_sheet         return active sheet and book if needed.
 make_sample        add the content of the sample file to the active sheet.
 parse_args         parse command-line options.
 run_from_script    routine for command-line startup.
@@ -54,7 +54,7 @@ def load_config(excel_dir):
 
 def load_sheet(book_also=False):
     """
-    Return active book and sheet.
+    Return active sheet and book if needed.
 
     Parameters
     ----------
