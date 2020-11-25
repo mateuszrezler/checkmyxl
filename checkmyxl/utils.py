@@ -43,6 +43,7 @@ def load_config(excel_dir):
         When `True`, checking area background color is removed.
     sample_path : str
         Absolute path of sample `csv` file.
+
     """
     config_path = join_path(excel_dir, 'config')
     sys_path.append(config_path)
