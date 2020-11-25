@@ -1,9 +1,35 @@
+"""
+Core module of checkmyxl package.
+
+This module provides: `ColumnChecker` class.
+
+Classes
+-------
+ColumnChecker    engine of the checking process.
+
+"""
 from checkmyxl.utils import skip_header
 from config.tasks import TASKS
 
 
 class ColumnChecker(object):
+    """
+    Engine of the checking process.
 
+    Checking columns as specified in `TASKS` dictionary.
+
+    Parameters
+    ----------
+    sheet : xlwings.main.Sheet
+        Active sheet.
+    selection : xlwings.main.Range
+        Selected region in the active sheet.
+    header : bool
+        When `True`, the first row is skipped by `ColumnChecker`.
+    reset_colors : bool
+        When `True`, checking area background color is removed.
+
+    """
     def __init__(self, sheet, selection, header, reset_colors):
         self.sheet = sheet
         self.selection = selection
@@ -12,6 +38,16 @@ class ColumnChecker(object):
         self.selection = self.set_selection()
 
     def check(self):
+        """
+        For each column do a specific task, row by row.
+
+        Skip columns with indices not found in `TASKS` dictionary.
+        If task is a function then call it with `cell` as argument.
+        When task is a tuple of funtion and dictionary then call this function
+        with `cell` as positional argument and unpacked dictionary as keyword
+        arguments.
+
+        """
         for column in self.selection.columns:
             col_num = column.column-1
             if col_num not in TASKS:
@@ -32,6 +68,14 @@ class ColumnChecker(object):
                 function(cell, **kwargs)
 
     def set_selection(self):
+        """
+        Preprocess selection before run.
+
+        Set selection as is, without header if selection is passed as argument.
+        Otherwise set selection as used range and skip header if needed.
+        Reset colors of set selection if `reset_colors` is `True`.
+
+        """
         if self.selection:
             self.header = False
             self.selection = self.sheet[self.selection]
