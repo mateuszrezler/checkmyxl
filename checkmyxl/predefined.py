@@ -212,7 +212,8 @@ def sub_and_group(cell, regex, replacement):
     group(cell)
 
 
-def translate(cell, dictionary, sep=';', not_found_tag='<not found>', col_offset=0):
+def translate(cell, dictionary, sep=';', not_found_tag='<not found>',
+              col_offset=0):
     """
     Translate elements of splitted cell value using specified dictionary.
 
