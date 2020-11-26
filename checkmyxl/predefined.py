@@ -172,7 +172,7 @@ def matches_regex(cell, regex, col_offset=0):
     check(cell, logic_test)
 
 
-def show_groups(cell):
+def show_groups(cell, colors=[(153, 204, 255), None]):
     """
     Apply the same background color to cell if the previous one contains
     the same content.
@@ -183,12 +183,15 @@ def show_groups(cell):
     ----------
     cell : xlwings.main.Range
         Evaluated cell.
+    colors : list, optional
+        A pair of colors to apply.
+        Light blue and no background by default.
 
     """
-    group(cell)
+    group(cell, colors)
 
 
-def sub_and_group(cell, regex, replacement):
+def sub_and_group(cell, regex, replacement, colors=[(153, 204, 255), None]):
     """
     Replace the regular expression matches in the cell value with
     the specified phrase. Then apply the same background color to cell
@@ -203,13 +206,16 @@ def sub_and_group(cell, regex, replacement):
         Regular expression.
     replacement : str
         Replacement phrase for regular expression matches.
+    colors : list, optional
+        A pair of colors to apply.
+        Light blue and no background by default.
 
     """
     if cell.value is None:
         cell.value = ''
     else:
         cell.value = sub(regex, replacement, str(cell.value))
-    group(cell)
+    group(cell, colors)
 
 
 def translate(cell, dictionary, sep=';', not_found_tag='<not found>',
