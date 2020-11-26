@@ -1,13 +1,74 @@
-Is bool?,Is greatest in row?,Is unique?,Has 3 consecutive digits?,Show groups,Not checked
-TRUE,0,1,A1,Sentence number 1.,0
-TRUE,10,1,A2,Sentence number 1.,1
-TRUE,20,2,A3,Sentence number 1.,2
-True,30,3,A4,Sentence number 2.,3
-False,40,4,A5,Sentence number 2.,4
-123,50,5,A6,Sentence number 3.,5
-,,6,A7,Sentence number 3.,6
-,,7,A8,Sentence number 4.,7
-FALSE,0,8,A9,Sentence number 4.,8
-FALSE,0,9,A100,Sentence number 4.,9
-FALSE,100,10,A200,Sentence number 4.,10
+"are_in(
+    iterable=['ant', 'bat']
+)","are_in(
+    iterable=['cat', 'dog'],
+    sep=';',
+    show_not_found=True,
+    not_found_prefix='Not found: ',
+    col_offset=-1
+)","is_in(
+    iterable=[True, 1],
+)","is_in(
+    iterable=(
+        None, False, 0, 'NA'
+    ),
+    col_offset=-1
+)","is_instance(
+    instance=float
+)","is_instance(
+    instance=bool,
+    col_offset=-3
+)",is_greatest_in_row(),"is_greatest_in_row(
+    autocorrect=True,
+    col_offset=-1
+)",is_unique(),"make_link(
+    col_offset=1
+)",make_link(),"matches_regex(
+    regex=r'A\d$'
+)","matches_regex(
+    regex=r'\d{3}',
+    col_offset=-8
+)",show_groups(),"show_groups(
+    colors=[
+        (255, 255, 0),
+        (0, 255, 255)
+    ]
+)","sub_and_group(
+    regex=r'0*\.0',
+    replacement='000',
+)","sub_and_group(
+    regex=r'[A-Z]',
+    replacement=lambda match: \
+        match.group(0).lower(),
+    colors=[
+        (255, 255, 0),
+        (0, 255, 255)
+    ]
+)","translate(
+    dictionary: {
+        'ant': 0, 'bat': 1
+    },
+    sep=', '
+)","translate(
+    dictionary: {
+        'cat': True, 'dog': False
+    },
+    sep=';',
+    not_found_tag='<?>',
+    col_offset=-18
+)",is_area_above_threshold(),"is_area_above_threshold(
+    threshold=10
+)"
+ant,,0,,True,,0,,A1,,example.com,A1,,Sentence number 1.,Group X,1,ant,ant,,0,0
+bat,,0.5,,False,,10,,A2,,http://example.com,A10,,Sentence number 1.,Group X,10,Ant,bat,,0.2,0.2
+ant;bat,,1,,,,20,,A3,,https://example.com,A2,,,Group X,100,ANT,"ant, bat",,0.5,0.5
+cat,,5,,-100,,30,,A4,,www.example.com,A20,,Sentence number 2.,Group X,1000,bat,cat,,1,1
+dog,,10,,-10,,40,,A5,,http://www.example.com,A3,,Sentence number 2.,Group Y,,Bat,dog,,2,2
+cat;dog,,50,,1,,50,,A6,,https://www.example.com,A30,,Sentence number 3.,Group Y,,BAT,"cat, dog",,5,5
+ant;bat;cat;dog,,100,,0,,60,,A7,,,B1,,Sentence number 3.,Group Y,,,"ant, bat, cat, dog",,10,10
+ant;ant;bat;bat,,500,,1,,70,,A8,,github.com,B10,,Sentence number 4.,Group Y,,,"ant, ant, bat, bat",,20,20
+cat;cat;dog;dog,,True,,10,,,,A9,,https://github.com,B2,,Sentence number 4.,Group Z,2,2 cats and 2 dogs,"cat, cat, dog, dog",,50,50
+,,False,,100,,True,,A1,,www.github.com,B20,,Sentence number 5.,Group Z,20,2 cats AND 2 dogs,,,100,100
+False,,,,Not a number,,False,,A11,,https://www.github.com,B3,,Sentence number 5.,Group Z,200,2 CATS and 2 DOGS,True,,200,200
+100,,Not a number,,,,Not a number,,,,,B30,,,Group Z,2000,2 CATS AND 2 DOGS,200,,500,500
 
