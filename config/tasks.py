@@ -17,7 +17,7 @@ from config.settings import PALETTE
 
 
 TASKS = {
-    0: (are_in, {'iterable': ['cat', 'dog']}),
+    0: (are_in, {'iterable': ['ant', 'bat']}),
     1: (are_in, {'iterable': ['cat', 'dog'],
                  'sep': ';',
                  'show_not_found': True,
