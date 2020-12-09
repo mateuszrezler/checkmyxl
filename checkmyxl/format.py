@@ -10,11 +10,14 @@ group    apply the same background color to cell if the previous one contains
          the same content.
 
 """
+from config.settings import PALETTE
+
+
 group_switch = True
 
 
-def check(cell, logic_test, autocorrect=False, correct_color=(0, 255, 0),
-          incorrect_color=(255, 0, 0), corrected_color=(255, 255, 0)):
+def check(cell, logic_test, autocorrect=False, correct_color=PALETTE['green'],
+          incorrect_color=PALETTE['red'], corrected_color=PALETTE['yellow']):
     """
     Do a logic test and change the background color of a cell.
 
@@ -51,7 +54,7 @@ def check(cell, logic_test, autocorrect=False, correct_color=(0, 255, 0),
             cell.color = incorrect_color
 
 
-def group(cell, colors=[(153, 204, 255), None]):
+def group(cell, colors=[PALETTE['blue'], None]):
     """
     Apply the same background color to cell if the previous one contains
     the same content.

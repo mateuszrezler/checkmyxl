@@ -47,7 +47,9 @@ def load_config(excel_dir):
     """
     config_path = join_path(excel_dir, 'config')
     sys_path.append(config_path)
-    from config.settings import EXCEL_FILE, HEADER, RESET_COLORS, SAMPLE_FILE
+    global PALETTE
+    from config.settings import EXCEL_FILE, HEADER, RESET_COLORS, \
+        SAMPLE_FILE, PALETTE
     excel_path = join_path(excel_dir, EXCEL_FILE)
     sample_path = join_path(excel_dir, *SAMPLE_FILE.split('/'))
     return excel_path, HEADER, RESET_COLORS, sample_path
@@ -91,6 +93,7 @@ def make_sample(sample_path, autofit=True):
     sheet = load_sheet()
     sample = read_csv(sample_path, header=None).values
     sheet['A1'].value = sample
+    sheet.used_range.rows[0].color = PALETTE['violet']
     if autofit:
         sheet.autofit('columns')
 

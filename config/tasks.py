@@ -13,6 +13,7 @@ from checkmyxl.predefined import are_in, is_in, is_instance, \
     is_greatest_in_row, is_unique, make_link, matches_regex, show_groups, \
     sub_and_group, translate
 from config.custom import is_area_above_threshold
+from config.settings import PALETTE
 
 
 TASKS = {
@@ -38,12 +39,12 @@ TASKS = {
     12: (matches_regex, {'regex': r'\d{3}',
                          'col_offset': -8}),
     13: show_groups,
-    14: (show_groups, {'colors': [(255, 255, 0), (0, 255, 255)]}),
+    14: (show_groups, {'colors': [PALETTE['orange'], PALETTE['yellow']]}),
     15: (sub_and_group, {'regex': r'0*\.0',
                          'replacement': '000'}),
     16: (sub_and_group, {'regex': r'[A-Z]',
                          'replacement': lambda match: match.group(0).lower(),
-                         'colors': [(255, 255, 0), (0, 255, 255)]}),
+                         'colors': [PALETTE['orange'], PALETTE['yellow']]}),
     17: (translate, {'dictionary': {'ant': 0, 'bat': 1},
                      'sep': ', '}),
     18: (translate, {'dictionary': {'cat': True, 'dog': False},

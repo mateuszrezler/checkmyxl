@@ -6,6 +6,7 @@ that are ordered in `tasks` module.
 
 """
 from .format import check, group
+from config.settings import PALETTE
 from collections import Counter
 from re import search, sub
 
@@ -172,7 +173,7 @@ def matches_regex(cell, regex, col_offset=0):
     check(cell, logic_test)
 
 
-def show_groups(cell, colors=[(153, 204, 255), None]):
+def show_groups(cell, colors=[PALETTE['blue'], None]):
     """
     Apply the same background color to cell if the previous one contains
     the same content.
@@ -191,7 +192,7 @@ def show_groups(cell, colors=[(153, 204, 255), None]):
     group(cell, colors)
 
 
-def sub_and_group(cell, regex, replacement, colors=[(153, 204, 255), None]):
+def sub_and_group(cell, regex, replacement, colors=[PALETTE['blue'], None]):
     """
     Replace the regular expression matches in the cell value with
     the specified phrase. Then apply the same background color to cell
