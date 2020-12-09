@@ -1,5 +1,14 @@
+# coverage
+.coverage
+
+# macOS
+.DS_Store
+
 # Microsoft Excel files
 *.xlsm
+
+# pytest
+.pytest_cache
 
 # Python cache
 __pycache__
