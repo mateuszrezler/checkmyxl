@@ -30,8 +30,8 @@
     col_offset=-8
 )",show_groups(),"show_groups(
     colors=[
-        (255, 255, 0),
-        (0, 255, 255)
+        PALETTE['orange'],
+        PALETTE['yellow']
     ]
 )","sub_and_group(
     regex=r'0*\.0',
@@ -41,8 +41,8 @@
     replacement=lambda match: \
         match.group(0).lower(),
     colors=[
-        (255, 255, 0),
-        (0, 255, 255)
+        PALETTE['orange'],
+        PALETTE['yellow']
     ]
 )","translate(
     dictionary: {
@@ -59,9 +59,9 @@
 )",is_area_above_threshold(),"is_area_above_threshold(
     threshold=10
 )"
-ant,,0,,True,,0,,A1,,example.com,A1,,Sentence number 1.,Group X,1,ant,ant,,0,0
-bat,,0.5,,False,,10,,A2,,http://example.com,A10,,Sentence number 1.,Group X,10,Ant,bat,,0.2,0.2
-ant;bat,,1,,,,20,,A3,,https://example.com,A2,,,Group X,100,ANT,"ant, bat",,0.5,0.5
+ant,,0,,True,,0,,A1,,example.com,A1,,Sentence number 1.,Group X,1,ant,ant,,Not a number,Not a number
+bat,,,,False,,10,,A2,,http://example.com,A10,,Sentence number 1.,Group X,10,Ant,bat,,0,0
+ant;bat,,1,,,,20,,A3,,https://example.com,A2,,,Group X,100,ANT,"ant, bat",,,
 cat,,5,,-100,,30,,A4,,www.example.com,A20,,Sentence number 2.,Group X,1000,bat,cat,,1,1
 dog,,10,,-10,,40,,A5,,http://www.example.com,A3,,Sentence number 2.,Group Y,,Bat,dog,,2,2
 cat;dog,,50,,1,,50,,A6,,https://www.example.com,A30,,Sentence number 3.,Group Y,,BAT,"cat, dog",,5,5
