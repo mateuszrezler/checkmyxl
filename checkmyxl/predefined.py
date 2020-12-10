@@ -19,6 +19,12 @@ def highlight(function):
 
 
 @iterate
+def alert_empty(cell, message='Empty cell found!'):
+    if isinstance(cell.value, type(None)):
+        cell.value = message
+
+
+@iterate
 @highlight
 def is_instance(cell, instance):
     return isinstance(cell.value, instance)
