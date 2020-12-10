@@ -19,7 +19,7 @@ def main():
                 (cell.row, active_range.last_cell.column)
             )
             this_column = active_sheet.range(
-                (active_range.row, cell.column),
+                (active_range.row+1, cell.column),
                 (active_range.last_cell.row, cell.column)
             )
             this_cell = active_sheet[cell.get_address(False, False)]
