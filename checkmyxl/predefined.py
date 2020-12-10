@@ -2,19 +2,19 @@ GREEN = (0, 255, 0)
 RED = (255, 0, 0)
 
 
-def iterate(func):
-    def wrapper(sheet_range, *args):
+def iterate(function):
+    def wrapper(sheet_range, *args, **kwargs):
         for cell in sheet_range:
-            func(cell, *args)
+            function(cell, *args, **kwargs)
     return wrapper
 
 
-def highlight(func):
-    def wrapper(cell, *args):
-        if func(cell, *args):
-            cell.color = GREEN
-        else:
-            cell.color = RED
+def highlight(function):
+    def wrapper(cell, *args, correct_color=GREEN, incorrect_color=RED,
+                **kwargs):
+        result = function(cell, *args, **kwargs)
+        cell.color = (incorrect_color, correct_color)[int(result)]
+        return result
     return wrapper
 
 
