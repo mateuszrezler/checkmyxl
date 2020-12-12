@@ -1,4 +1,5 @@
 from argparse import ArgumentParser
+from os.path import join as join_path
 from pandas import read_csv
 from subprocess import CalledProcessError, run
 from sys import exit
@@ -20,7 +21,7 @@ def main():
                sep='\n')
         exit(1)
     try:
-        run(['mv', 'book/book.xlsm', 'book.xlsm'], check=True)
+        run(['mv', join_path('book', 'book.xlsm'), 'book.xlsm'], check=True)
     except CalledProcessError:
         print('The project `book` has not been created.')
         exit(1)
@@ -42,11 +43,11 @@ def main():
         sheet1, sheet1_code, checkmyxl_conf = \
             sheets['Sheet1'], sheets['Sheet1.code'], sheets['checkmyxl.conf']
         sheet1['A1'].options(index=False).value = \
-            read_csv('sample/sample.csv')
+            read_csv(join_path('sample', 'sample.csv'))
         sheet1_code['A1'].options(index=False).value = \
-            read_csv('sample/sample_code.csv')
+            read_csv(join_path('sample', 'sample_code.csv'))
         checkmyxl_conf['A1'].options(index=False).value = \
-            read_csv('sample/sample_conf.csv')
+            read_csv(join_path('sample', 'sample_conf.csv'))
         print('Sample added.')
 
 
