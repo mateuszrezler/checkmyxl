@@ -1,0 +1,3 @@
+# code,"is_instance(this_column, bool)","is_instance(this_column, float)"
+"alert_empty(this_row)",,
+
