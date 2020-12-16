@@ -47,6 +47,12 @@ def are_in(cell, iterable, sep=';', show_not_found=False,
 
 
 @iterate
+@mark
+def is_in(cell, iterable):
+    return cell.value in iterable
+
+
+@iterate
 @highlight
 def is_instance(cell, instance):
     return isinstance(cell.value, instance)
