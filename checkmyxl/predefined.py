@@ -35,6 +35,18 @@ def alert_empty(cell, message='Empty cell found!'):
 
 
 @iterate
+@mark
+def are_in(cell, iterable, sep=';', show_not_found=False,
+           not_found_prefix='Not found: ', not_found_suffix='|'):
+    elements = str(cell.value).split(sep)
+    not_found = [element for element in elements if element not in iterable]
+    if not_found and show_not_found:
+        cell.value = not_found_prefix + sep.join(not_found) + not_found_suffix \
+            + str(cell.value)
+    return not not_found
+
+
+@iterate
 @highlight
 def is_instance(cell, instance):
     return isinstance(cell.value, instance)
